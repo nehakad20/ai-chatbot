@@ -1,128 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>AI Chatbot</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    h2 {
-      margin-top: 20px;
-      color: #333;
-    }
-
-    #chat-box {
-      width: 80%;
-      max-width: 600px;
-      height: 70vh;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 15px;
-      overflow-y: auto;
-      margin-top: 10px;
-    }
-
-    .message {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
-      max-width: 80%;
-      line-height: 1.4;
-    }
-
-    .user {
-      background: #DCF8C6;
-      align-self: flex-end;
-      text-align: right;
-    }
-
-    .bot {
-      background: #E8E8E8;
-      text-align: left;
-    }
-
-    #input-area {
-      display: flex;
-      width: 80%;
-      max-width: 600px;
-      margin-top: 15px;
-    }
-
-    #message {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      margin-left: 10px;
-      padding: 10px 20px;
-      background: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0056b3;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h2>🤖 My AI Chatbot</h2>
-<div id="chat-box"></div>
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>AI Chatbot 🤖</h2>
+  </div>
 
-<div id="input-area">
-  <input type="text" id="message" placeholder="Type your message..." />
-  <button onclick="sendMessage()">Send</button>
+  <div id="chat-box" class="chat-box"></div>
+
+  <div class="chat-input">
+    <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off"/>
+    <button id="send-btn">Send</button>
+  </div>
 </div>
 
-<script>
-  async function sendMessage() {
-    const msgInput = document.getElementById("message");
-    const chatBox = document.getElementById("chat-box");
-    const userMessage = msgInput.value.trim();
-    if (!userMessage) return;
-
-    // Display user message
-    const userDiv = document.createElement("div");
-    userDiv.classList.add("message", "user");
-    userDiv.textContent = "You: " + userMessage;
-    chatBox.appendChild(userDiv);
-    msgInput.value = "";
-
-    // Scroll
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    // Send request to backend
-    const response = await fetch("http://localhost:8080/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: userMessage })
-    });
-
-    const data = await response.json();
-
-    // Display bot response
-    const botDiv = document.createElement("div");
-    botDiv.classList.add("message", "bot");
-    botDiv.textContent = "Bot: " + data.botResponse;
-    chatBox.appendChild(botDiv);
-    chatBox.scrollTop = chatBox.scrollHeight;
-  }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
