@@ -1,21 +1,21 @@
 # AI Chatbot (Spring Boot)
 
-Ready-to-run Spring Boot project that demonstrates a simple AI chatbot backed by OpenAI's Chat Completions API.
+A simple chatbot built using Java Spring Boot that connects to OpenAI's Chat API.
 
-## Quick setup
+### Features
+- Chatbot replies dynamically using GPT model  
+- REST API endpoint `/api/chat`   
 
-1. Install Java 17+ and Maven.
-2. Create PostgreSQL database `chatdb` and adjust `src/main/resources/application.properties` for username/password.
-3. Set OpenAI API key in environment:
-   - Linux/macOS: `export OPENAI_API_KEY="sk-..."`
-   - Windows PowerShell: `$env:OPENAI_API_KEY = "sk-..."`
-4. Build & run:
-   ```bash
-   mvn clean package
-   java -jar target/ai-chatbot-0.0.1-SNAPSHOT.jar
-   ```
-5. Open `http://localhost:8080/` in your browser.
+### Tech Stack
+- Java 17  
+- Spring Boot  
+- MySQL  
+- OpenAI API  
 
-## Notes
-- The project uses `gpt-3.5-turbo` model by default. Change model or add conversation history in `OpenAIService`.
-- If OpenAI key is not set, the service returns a helpful message in the bot response.
+### Run Project
+1. Set your OpenAI API key in `application.properties`
+2. Run the Spring Boot project
+3. Test using Postman: `POST http://localhost:8080/api/chat`
+
+Open in browser:
+http://localhost:8080/index.html
